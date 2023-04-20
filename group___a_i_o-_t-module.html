@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Echo AIO API: Configure AIO-T module</title>
+<title>Echo AIO API: Configure an AIO TDM module</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -51,12 +51,93 @@ $(document).ready(function(){initNavTree('group___a_i_o-_t-module.html',''); ini
 </script>
 <div id="doc-content">
 <div class="header">
-  <div class="headertitle"><div class="title">Configure AIO-T module</div></div>
+  <div class="headertitle"><div class="title">Configure an AIO TDM module</div></div>
 </div><!--header-->
 <div class="contents">
 <a name="details" id="details"></a><h2 class="groupheader">Description </h2>
-<p >AIO-T configuration parameters. </p>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
+<p >AIO-T configuration constants and parameters. </p>
+<p >To configure an AIO-T module, call AIO_setModuleIntParameter to set one of the parameters listed below. All of the AIO-T module parameters are integers. You can also use AIO_getModuleIntParameter to read the current value of a parameter. </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> configureAIOTModule()</div>
+<div class="line">{</div>
+<div class="line">   <span class="comment">//</span></div>
+<div class="line">   <span class="comment">// Read the AIO-T module firmware version</span></div>
+<div class="line">   <span class="comment">//</span></div>
+<div class="line">   <span class="keywordtype">int</span> firmwareVersion = 0;</div>
+<div class="line">   <span class="keywordtype">int</span> status = <a class="code hl_function" href="group___module-parameter-functions.html#ga3c886266d930c41318d3a00bf814fe3b">AIO_getModuleIntParameter</a>(1, <a class="code hl_enumvalue" href="group___a_i_o-_t-module.html#gga8d4e9a92f593b933a24a010b135c6882afdd23a5430563ab010958c6035b9cc8f">AIO_tdmParameterFirmwareVersion</a>, &amp;firmwareVersion);</div>
+<div class="line">   <span class="keywordflow">if</span> (status != <a class="code hl_define" href="group___a_i_o-zzz-interface-return-values.html#gac07b6d7e5152eb258f3c81e916d44e7a">AIO_OK</a>)</div>
+<div class="line">   {</div>
+<div class="line">       <span class="keywordflow">return</span>;</div>
+<div class="line">   }</div>
+<div class="line"> </div>
+<div class="line">   <span class="comment">//</span></div>
+<div class="line">   <span class="comment">// Set 64 bits per TDM frame</span></div>
+<div class="line">   <span class="comment">//</span></div>
+<div class="line">   status = <a class="code hl_function" href="group___module-parameter-functions.html#gad5f65101f6954c18fb6cbc2bbc1b014b">AIO_setModuleIntParameter</a>(1, <a class="code hl_enumvalue" href="group___a_i_o-_t-module.html#gga8d4e9a92f593b933a24a010b135c6882a67cb41b285f44dbb3f3b39208ed26e3c">AIO_tdmParameterBitsPerFrame</a>, 64);</div>
+<div class="line">   <span class="keywordflow">if</span> (status != <a class="code hl_define" href="group___a_i_o-zzz-interface-return-values.html#gac07b6d7e5152eb258f3c81e916d44e7a">AIO_OK</a>)</div>
+<div class="line">   {</div>
+<div class="line">       <span class="keywordflow">return</span>;</div>
+<div class="line">   }</div>
+<div class="line"> </div>
+<div class="line">   std::cout &lt;&lt; <span class="stringliteral">&quot;AIO-T firmware version: &quot;</span> &lt;&lt; firmwareVersion &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup___a_i_o-_t-module_html_gga8d4e9a92f593b933a24a010b135c6882a67cb41b285f44dbb3f3b39208ed26e3c"><div class="ttname"><a href="group___a_i_o-_t-module.html#gga8d4e9a92f593b933a24a010b135c6882a67cb41b285f44dbb3f3b39208ed26e3c">AIO_tdmParameterBitsPerFrame</a></div><div class="ttdeci">@ AIO_tdmParameterBitsPerFrame</div><div class="ttdoc">Sets the number of bits per TDM Frame; 01 - 64 bits/frame(not implemented), 10 - 128 bits/frame(not i...</div><div class="ttdef"><b>Definition:</b> EchoAIOInterface_TDMModule.h:112</div></div>
+<div class="ttc" id="agroup___a_i_o-_t-module_html_gga8d4e9a92f593b933a24a010b135c6882afdd23a5430563ab010958c6035b9cc8f"><div class="ttname"><a href="group___a_i_o-_t-module.html#gga8d4e9a92f593b933a24a010b135c6882afdd23a5430563ab010958c6035b9cc8f">AIO_tdmParameterFirmwareVersion</a></div><div class="ttdeci">@ AIO_tdmParameterFirmwareVersion</div><div class="ttdoc">Read-only integer parameter for the AIO-T module firmware version; reads -1 on error.</div><div class="ttdef"><b>Definition:</b> EchoAIOInterface_TDMModule.h:106</div></div>
+<div class="ttc" id="agroup___a_i_o-zzz-interface-return-values_html_gac07b6d7e5152eb258f3c81e916d44e7a"><div class="ttname"><a href="group___a_i_o-zzz-interface-return-values.html#gac07b6d7e5152eb258f3c81e916d44e7a">AIO_OK</a></div><div class="ttdeci">#define AIO_OK</div><div class="ttdef"><b>Definition:</b> EchoAIOInterface_Constants.h:30</div></div>
+<div class="ttc" id="agroup___module-parameter-functions_html_ga3c886266d930c41318d3a00bf814fe3b"><div class="ttname"><a href="group___module-parameter-functions.html#ga3c886266d930c41318d3a00bf814fe3b">AIO_getModuleIntParameter</a></div><div class="ttdeci">ECHO_AIO_API int AIO_getModuleIntParameter(int moduleSlot, int parameter, int *const value)</div><div class="ttdoc">Retrieves an integer parameter for a module.</div></div>
+<div class="ttc" id="agroup___module-parameter-functions_html_gad5f65101f6954c18fb6cbc2bbc1b014b"><div class="ttname"><a href="group___module-parameter-functions.html#gad5f65101f6954c18fb6cbc2bbc1b014b">AIO_setModuleIntParameter</a></div><div class="ttdeci">ECHO_AIO_API int AIO_setModuleIntParameter(int moduleSlot, int parameter, int value)</div><div class="ttdoc">Sets an integer parameter for a module.</div></div>
+</div><!-- fragment --><p><br  />
+</p>
+<p ><b>Python example for AIO-TDM module configuration</b><br  />
+<br  />
+ Below is an example shows how to configure an AIO-C module using the EchoAIOInterface.dll.<br  />
+ API calls in this example make use of the Python API interface. The Python API interface is a wrapper around the C++ API interface. The Python API interface is provided as a convenience for Python programmers. It exposes the enums and defines from the C++ API interface<br  />
+</p>
+<p >First, download the Python API interface files at <a href="https://github.com/mattgonzalez/EchoAIOExample">https://github.com/mattgonzalez/EchoAIOExample</a> <br  />
+ To use the inteface with the AIO Combo Module API, copy the file EchoAIOInterface_ComboModule_Python.py to the same directory as the python file, and import the file into your script.<br  />
+<br  />
+ </p><div class="fragment"><div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment"># ctypes provides C compatible data types, and allows calling functions in DLLs or shared libraries.</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="keyword">import</span> ctypes</div>
+<div class="line"><span class="keyword">import</span> EchoAIOInterface_TDMModule_Python <span class="keyword">as</span> tdm</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment">#    Change the following path to the location of EchoAIOInterface.dll.</span></div>
+<div class="line"><span class="comment">#    The default location is C:\Progam Files\Echo AIO\CLI + API\EchoAIOInterface.dll</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line">path = <span class="stringliteral">&#39;C:\Program Files\Echo AIO\CLI + API\EchoAIOInterface.dll&#39;</span></div>
+<div class="line">echo = ctypes.WinDLL(path)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment"># Define the ctypes function arguments and return types</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line">echo.AIO_getModuleIntParameter.argtypes = [ctypes.c_int ,ctypes.c_int, ctypes.POINTER(ctypes.c_int)]</div>
+<div class="line">echo.AIO_getModuleIntParameter.restype = ctypes.c_int</div>
+<div class="line">echo.AIO_setModuleIntParameter.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_int]</div>
+<div class="line">echo.AIO_getModuleDoubleParameter.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.POINTER(ctypes.c_double)]</div>
+<div class="line">echo.AIO_getModuleDoubleParameter.restype = ctypes.c_int</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment"># Initialize the EchoAIOInterface library</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line">echo.AIO_initialize()</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment"># Read the AIO-T module firmware version</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line">firmwareVersion = ctypes.c_int()</div>
+<div class="line">echo.AIO_getModuleIntParameter(1, tdm.AIOTModuleParameters.AIO_tdmParameterFirmwareVersion, ctypes.byref(firmwareVersion))</div>
+<div class="line">print(hex(firmwareVersion.value))</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment"># Set 64 bits per TDM frame</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line">print(echo.AIO_setModuleIntParameter(1, tdm.AIOTModuleParameters.AIO_tdmParameterBitsPerFrame, 64))</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment"># Shutdown the EchoAIOInterface library</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line">echo.AIO_shutdown()</div>
+</div><!-- fragment --> <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="ga62cfc86f28de4e676e24087b1d83485f" name="ga62cfc86f28de4e676e24087b1d83485f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga62cfc86f28de4e676e24087b1d83485f">&#9670;&#160;</a></span>AIOTClockModes</h2>
 

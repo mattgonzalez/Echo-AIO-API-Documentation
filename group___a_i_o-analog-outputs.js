@@ -1,5 +1,8 @@
 var group___a_i_o_analog_outputs =
 [
+    [ "AIOAnalogOutputIntParameters", "group___a_i_o-analog-outputs.html#ga322f61d463aa1b4e53aeb33c5dc121fb", [
+      [ "AIO_outputParameterLimiterEnable", "group___a_i_o-analog-outputs.html#gga322f61d463aa1b4e53aeb33c5dc121fbab9fd849aed78be8accf7226d528d026c", null ]
+    ] ],
     [ "AIO_getOutputGain", "group___a_i_o-analog-outputs.html#ga91900c4c5792654ca4624b64e0d7dafc", null ],
     [ "AIO_getOutputLimitVolts", "group___a_i_o-analog-outputs.html#ga72fe289dc3d72beb1847ac5926bc14d0", null ],
     [ "AIO_hasOutputGainControl", "group___a_i_o-analog-outputs.html#ga65db8428dea1fafb41c8e3cdf964d310", null ],

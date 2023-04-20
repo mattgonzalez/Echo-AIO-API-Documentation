@@ -70,8 +70,43 @@ Functions</h2></td></tr>
 <tr class="separator:gab7472dea461e71d7761a251e167811de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description </h2>
-<p >Initialize and clean up the API shared library. </p>
-<h2 class="groupheader">Function Documentation</h2>
+<p >Initialize and clean up the API shared library using C++. </p>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> configureAIO()</div>
+<div class="line">{</div>
+<div class="line">    <span class="comment">// Initialize the shared library</span></div>
+<div class="line">    <a class="code hl_function" href="group___library-startup-and-shutdown.html#ga1423191184834572394d1e12f98714a2">AIO_initialize</a>();</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Check if an AIO is connected</span></div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;AIO connected: &quot;</span> &lt;&lt; <a class="code hl_function" href="group___a_i_o-inquiry.html#ga68d2cf8ea6776651125932a3a4e2eeb0">AIO_isAIOConnected</a>() &lt;&lt; std::endl;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Always call AIO_shutdown before unloading the library</span></div>
+<div class="line">    <a class="code hl_function" href="group___library-startup-and-shutdown.html#gaf13fa1bd3932d12aa29eb7285ac929be">AIO_shutdown</a>();</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup___a_i_o-inquiry_html_ga68d2cf8ea6776651125932a3a4e2eeb0"><div class="ttname"><a href="group___a_i_o-inquiry.html#ga68d2cf8ea6776651125932a3a4e2eeb0">AIO_isAIOConnected</a></div><div class="ttdeci">ECHO_AIO_API int AIO_isAIOConnected()</div><div class="ttdoc">Check if an AIO is connected to this computer.</div></div>
+<div class="ttc" id="agroup___library-startup-and-shutdown_html_ga1423191184834572394d1e12f98714a2"><div class="ttname"><a href="group___library-startup-and-shutdown.html#ga1423191184834572394d1e12f98714a2">AIO_initialize</a></div><div class="ttdeci">ECHO_AIO_API void AIO_initialize()</div><div class="ttdoc">Call AIO_initialize before calling any other library functions to set up the library.</div></div>
+<div class="ttc" id="agroup___library-startup-and-shutdown_html_gaf13fa1bd3932d12aa29eb7285ac929be"><div class="ttname"><a href="group___library-startup-and-shutdown.html#gaf13fa1bd3932d12aa29eb7285ac929be">AIO_shutdown</a></div><div class="ttdeci">ECHO_AIO_API void AIO_shutdown()</div><div class="ttdoc">Call AIO_shutdown before unloading the library to release memory and resources.</div></div>
+</div><!-- fragment --><p >Initialize and clean up the API shared library using Python </p><div class="fragment"><div class="line"><span class="keyword">import</span> ctypes</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">import</span> EchoAIOInterface</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment">#    Change the following path to the location of EchoAIOInterface.dll.</span></div>
+<div class="line"><span class="comment">#    The default location is C:\Progam Files\Echo AIO\CLI + API\EchoAIOInterface.dll</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line">path = <span class="stringliteral">&#39;C:\Program Files\Echo AIO\CLI + API\EchoAIOInterface.dll&#39;</span></div>
+<div class="line">echoaio = ctypes.WinDLL(path)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment">#    Call AIO_initiatlize() before  calling any other function to set up the library.</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line">echoaio.AIO_initialize()</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment">#    Call AIO_shutdown() before unloading the library to release memory and resources</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line">echoaio.AIO_shutdown.restype = <span class="keywordtype">None</span></div>
+<div class="line">echoaio.AIO_shutdown()</div>
+</div><!-- fragment --> <h2 class="groupheader">Function Documentation</h2>
 <a id="gab7472dea461e71d7761a251e167811de" name="gab7472dea461e71d7761a251e167811de"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gab7472dea461e71d7761a251e167811de">&#9670;&#160;</a></span>AIO_getErrorString()</h2>
 
@@ -125,7 +160,6 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Call AIO_initialize before calling any other library functions to set up the library. </p>
-<dl class="section return"><dt>Returns</dt><dd>ECHO_AIO_OK if successful, otherwise an error code </dd></dl>
 
 </div>
 </div>

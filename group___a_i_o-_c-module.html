@@ -51,37 +51,166 @@ $(document).ready(function(){initNavTree('group___a_i_o-_c-module.html',''); ini
 </script>
 <div id="doc-content">
 <div class="header">
-  <div class="summary">
-<a href="#define-members">Defines</a>  </div>
   <div class="headertitle"><div class="title">Configure AIO-C module</div></div>
 </div><!--header-->
 <div class="contents">
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
-Defines</h2></td></tr>
-<tr class="memitem:gaca4a1ca660ae49317ba5dac57e4f2da6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___a_i_o-_c-module.html#gaca4a1ca660ae49317ba5dac57e4f2da6">AIO_comboVariableDCMinimumMillivolts</a>&#160;&#160;&#160;= 600</td></tr>
-<tr class="memdesc:gaca4a1ca660ae49317ba5dac57e4f2da6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum value for the variable DC power supply target voltage in millivolts.  <a href="group___a_i_o-_c-module.html#gaca4a1ca660ae49317ba5dac57e4f2da6">More...</a><br /></td></tr>
-<tr class="separator:gaca4a1ca660ae49317ba5dac57e4f2da6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7dc9905a82bb4d470ed3ec3e68df8546"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___a_i_o-_c-module.html#ga7dc9905a82bb4d470ed3ec3e68df8546">AIO_comboVariableDCMaximumAmperes</a>&#160;&#160;&#160;= 5000</td></tr>
-<tr class="memdesc:ga7dc9905a82bb4d470ed3ec3e68df8546"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum value for the variable DC power supply target voltage in millivolts.  <a href="group___a_i_o-_c-module.html#ga7dc9905a82bb4d470ed3ec3e68df8546">More...</a><br /></td></tr>
-<tr class="separator:ga7dc9905a82bb4d470ed3ec3e68df8546"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
 <a name="details" id="details"></a><h2 class="groupheader">Description </h2>
-<p >AIO-C configuration parameters. </p>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ga7dc9905a82bb4d470ed3ec3e68df8546" name="ga7dc9905a82bb4d470ed3ec3e68df8546"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga7dc9905a82bb4d470ed3ec3e68df8546">&#9670;&#160;</a></span>AIO_comboVariableDCMaximumAmperes</h2>
+<p >AIO-C configuration constants and parameters. </p>
+<p >To configure an AIO-C module, call AIO_setModuleIntParameter and AIO_setModuleDoubleParameter to set one of the parameters listed below. Note that some parameters require an integer value and that others require a double-precision floating point value. You can also use AIO_getModuleIntParameter or AIO_getModuleDoubleParameter to read the current value of a parameter. </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> configureAIOCModule()</div>
+<div class="line">{</div>
+<div class="line">   <span class="comment">//</span></div>
+<div class="line">   <span class="comment">// Read the AIO-C module firmware version</span></div>
+<div class="line">   <span class="comment">//</span></div>
+<div class="line">   <span class="keywordtype">int</span> firmwareVersion = 0;</div>
+<div class="line">   <span class="keywordtype">int</span> status = <a class="code hl_function" href="group___module-parameter-functions.html#ga3c886266d930c41318d3a00bf814fe3b">AIO_getModuleIntParameter</a>(<a class="code hl_enumvalue" href="group___a_i_o-_c-module.html#gga1d0d667c9fe8ba0734beb5f4e4807ff2abcf1b4bbb1bc19622b7d8d818e012981">AIO_comboParameterFirmwareVersion</a>, &amp;firmwareVersion);</div>
+<div class="line">   <span class="keywordflow">if</span> (status != <a class="code hl_define" href="group___a_i_o-zzz-interface-return-values.html#gac07b6d7e5152eb258f3c81e916d44e7a">AIO_OK</a>)</div>
+<div class="line">   {</div>
+<div class="line">       <span class="keywordflow">return</span>;</div>
+<div class="line">   }</div>
+<div class="line"> </div>
+<div class="line">   <span class="comment">//</span></div>
+<div class="line">   <span class="comment">// Enable the 5 VDC power supply</span></div>
+<div class="line">   <span class="comment">//</span></div>
+<div class="line">   status = <a class="code hl_function" href="group___module-parameter-functions.html#gad5f65101f6954c18fb6cbc2bbc1b014b">AIO_setModuleIntParameter</a>(<a class="code hl_enumvalue" href="group___a_i_o-_c-module.html#gga1d0d667c9fe8ba0734beb5f4e4807ff2a9fee8fce1cc6a77be646df3e1deee58f">AIO_comboParameter5VDCEnable</a>, 1);</div>
+<div class="line">   <span class="keywordflow">if</span> (status != <a class="code hl_define" href="group___a_i_o-zzz-interface-return-values.html#gac07b6d7e5152eb258f3c81e916d44e7a">AIO_OK</a>)</div>
+<div class="line">   {</div>
+<div class="line">       <span class="keywordflow">return</span>;</div>
+<div class="line">   }</div>
+<div class="line"> </div>
+<div class="line">   <span class="comment">//</span></div>
+<div class="line">   <span class="comment">// Set the module battery simulator to measure up to 250 mA</span></div>
+<div class="line">   <span class="comment">//</span></div>
+<div class="line">   status = <a class="code hl_function" href="group___module-parameter-functions.html#gad5f65101f6954c18fb6cbc2bbc1b014b">AIO_setModuleIntParameter</a>(<a class="code hl_enumvalue" href="group___a_i_o-_c-module.html#gga1d0d667c9fe8ba0734beb5f4e4807ff2ab25a15b91935781b7a9652b65c7087ed">AIO_comboParameterMeasuredCurrentRange</a>, <a class="code hl_enumvalue" href="group___a_i_o-_c-module.html#gga601492d8e1c35fc7e18efe4b03380340a2f892700f4d14df734ba58719fbbb92f">AIO_comboCurrentMeasurementRange_250mA</a>);</div>
+<div class="line">   <span class="keywordflow">if</span>  (status != <a class="code hl_define" href="group___a_i_o-zzz-interface-return-values.html#gac07b6d7e5152eb258f3c81e916d44e7a">AIO_OK</a>)</div>
+<div class="line">   {</div>
+<div class="line">       <span class="keywordflow">return</span>;</div>
+<div class="line">   }</div>
+<div class="line"> </div>
+<div class="line">   std::cout &lt;&lt; <span class="stringliteral">&quot;AIO-C firmware version: &quot;</span> &lt;&lt; firmwareVersion &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup___a_i_o-_c-module_html_gga1d0d667c9fe8ba0734beb5f4e4807ff2a9fee8fce1cc6a77be646df3e1deee58f"><div class="ttname"><a href="group___a_i_o-_c-module.html#gga1d0d667c9fe8ba0734beb5f4e4807ff2a9fee8fce1cc6a77be646df3e1deee58f">AIO_comboParameter5VDCEnable</a></div><div class="ttdeci">@ AIO_comboParameter5VDCEnable</div><div class="ttdoc">Enable or disable the 5 VDC power supply    0 to disable, 1 to enable.</div><div class="ttdef"><b>Definition:</b> EchoAIOInterface_ComboModule.h:149</div></div>
+<div class="ttc" id="agroup___a_i_o-_c-module_html_gga1d0d667c9fe8ba0734beb5f4e4807ff2ab25a15b91935781b7a9652b65c7087ed"><div class="ttname"><a href="group___a_i_o-_c-module.html#gga1d0d667c9fe8ba0734beb5f4e4807ff2ab25a15b91935781b7a9652b65c7087ed">AIO_comboParameterMeasuredCurrentRange</a></div><div class="ttdeci">@ AIO_comboParameterMeasuredCurrentRange</div><div class="ttdoc">Set the battery simulator current measurement range; must be one of the AIO_comboCurrentMeasurementRa...</div><div class="ttdef"><b>Definition:</b> EchoAIOInterface_ComboModule.h:161</div></div>
+<div class="ttc" id="agroup___a_i_o-_c-module_html_gga1d0d667c9fe8ba0734beb5f4e4807ff2abcf1b4bbb1bc19622b7d8d818e012981"><div class="ttname"><a href="group___a_i_o-_c-module.html#gga1d0d667c9fe8ba0734beb5f4e4807ff2abcf1b4bbb1bc19622b7d8d818e012981">AIO_comboParameterFirmwareVersion</a></div><div class="ttdeci">@ AIO_comboParameterFirmwareVersion</div><div class="ttdoc">Module firmware version.</div><div class="ttdef"><b>Definition:</b> EchoAIOInterface_ComboModule.h:137</div></div>
+<div class="ttc" id="agroup___a_i_o-_c-module_html_gga601492d8e1c35fc7e18efe4b03380340a2f892700f4d14df734ba58719fbbb92f"><div class="ttname"><a href="group___a_i_o-_c-module.html#gga601492d8e1c35fc7e18efe4b03380340a2f892700f4d14df734ba58719fbbb92f">AIO_comboCurrentMeasurementRange_250mA</a></div><div class="ttdeci">@ AIO_comboCurrentMeasurementRange_250mA</div><div class="ttdoc">0 to 256 milliamps</div><div class="ttdef"><b>Definition:</b> EchoAIOInterface_ComboModule.h:187</div></div>
+<div class="ttc" id="agroup___a_i_o-zzz-interface-return-values_html_gac07b6d7e5152eb258f3c81e916d44e7a"><div class="ttname"><a href="group___a_i_o-zzz-interface-return-values.html#gac07b6d7e5152eb258f3c81e916d44e7a">AIO_OK</a></div><div class="ttdeci">#define AIO_OK</div><div class="ttdef"><b>Definition:</b> EchoAIOInterface_Constants.h:30</div></div>
+<div class="ttc" id="agroup___module-parameter-functions_html_ga3c886266d930c41318d3a00bf814fe3b"><div class="ttname"><a href="group___module-parameter-functions.html#ga3c886266d930c41318d3a00bf814fe3b">AIO_getModuleIntParameter</a></div><div class="ttdeci">ECHO_AIO_API int AIO_getModuleIntParameter(int moduleSlot, int parameter, int *const value)</div><div class="ttdoc">Retrieves an integer parameter for a module.</div></div>
+<div class="ttc" id="agroup___module-parameter-functions_html_gad5f65101f6954c18fb6cbc2bbc1b014b"><div class="ttname"><a href="group___module-parameter-functions.html#gad5f65101f6954c18fb6cbc2bbc1b014b">AIO_setModuleIntParameter</a></div><div class="ttdeci">ECHO_AIO_API int AIO_setModuleIntParameter(int moduleSlot, int parameter, int value)</div><div class="ttdoc">Sets an integer parameter for a module.</div></div>
+</div><!-- fragment --><p><br  />
+</p>
+<p ><b>Python example for AIO-C module configuration</b><br  />
+ Below is an example shows how to configure an AIO-C module using the EchoAIOInterface.dll.<br  />
+ API calls in this example make use of the Python API interface. The Python API interface is a wrapper around the C++ API interface. The Python API interface is provided as a convenience for Python programmers. It exposes the enums and defines from the C++ API interface<br  />
+</p>
+<p >First, download the Python API interface files at <a href="https://github.com/mattgonzalez/EchoAIOExample">https://github.com/mattgonzalez/EchoAIOExample</a> <br  />
+ To use the inteface with the AIO Combo Module API, copy the file EchoAIOInterface_ComboModule_Python.py to the same directory as the python file, and import the file into your script.<br  />
+<br  />
+ </p><div class="fragment"><div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment"># ctypes provides C compatible data types, and allows calling functions in DLLs or shared libraries.</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="keyword">import</span> ctypes</div>
+<div class="line"><span class="keyword">import</span> EchoAIOInterface_ComboModule_Python <span class="keyword">as</span> combo</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment">#    Change the following path to the location of EchoAIOInterface.dll.</span></div>
+<div class="line"><span class="comment">#    The default location is C:\Progam Files\Echo AIO\CLI + API\EchoAIOInterface.dll</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line">path = <span class="stringliteral">&#39;C:\Program Files\Echo AIO\CLI + API\EchoAIOInterface.dll&#39;</span></div>
+<div class="line">echo = ctypes.WinDLL(path)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment"># Include the AIO_combulemodule Enumeration Classes and defines</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="keyword">import</span> EchoAIOInterface_ComboModule_Python.py <span class="keyword">as</span> AIOpy</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment"># Define the ctypes function arguments and return types</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line">echo.AIO_getModuleIntParameter.argtypes = [ctypes.c_int ,ctypes.c_int, ctypes.POINTER(ctypes.c_int)]</div>
+<div class="line">echo.AIO_getModuleIntParameter.restype = ctypes.c_int</div>
+<div class="line">echo.AIO_setModuleIntParameter.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_int]</div>
+<div class="line">echo.AIO_getModuleDoubleParameter.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.POINTER(ctypes.c_double)]</div>
+<div class="line">echo.AIO_getModuleDoubleParameter.restype = ctypes.c_int</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment"># Initialize the EchoAIOInterface library</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line">echo.AIO_initialize()</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment"># Read the AIO-C module firmware version</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line">firmwareVersion = ctypes.c_int()</div>
+<div class="line">print(echo.AIO_getModuleIntParameter(1, combo.AIOComboModuleIntParameters.AIO_comboParameterFirmwareVersion, ctypes.byref(firmwareVersion)))</div>
+<div class="line">print(hex(firmwareVersion.value))</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment"># Set the AUX OUT pins to 0x03</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line">echo.AIO_setModuleIntParameter(1, combo.AIOComboModuleIntParameters.AIO_comboParameterAuxout, 3)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment"># Print the value of the AUX OUT pins</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line">auxOut = ctypes.c_int()</div>
+<div class="line">echo.AIO_getModuleIntParameter(1, combo.AIOComboModuleIntParameters.AIO_comboParameterAuxout, ctypes.byref(auxOut))</div>
+<div class="line">print(hex(auxOut.value))</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment"># Set the module battery simulator to measure up to 250 mA</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"> </div>
+<div class="line">echo.AIO_setModuleIntParameter(1, combo.AIOComboModuleIntParameters.AIO_comboParameterMeasuredCurrentRange, combo.AIOComboCurrentMeasurementRanges.AIO_comboCurrentMeasurementRange_250mA)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line"><span class="comment"># Shutdown the EchoAIOInterface library</span></div>
+<div class="line"><span class="comment">#</span></div>
+<div class="line">echo.AIO_shutdown()</div>
+</div><!-- fragment --> <h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ga143a12192cabf91f94bdb00bcdbcbff5" name="ga143a12192cabf91f94bdb00bcdbcbff5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga143a12192cabf91f94bdb00bcdbcbff5">&#9670;&#160;</a></span>AIO_comboVariableDCMaximumCurrentMicroamps</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define AIO_comboVariableDCMaximumAmperes&#160;&#160;&#160;= 5000</td>
+          <td class="memname">#define AIO_comboVariableDCMaximumCurrentMicroamps&#160;&#160;&#160;1280000</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Maximum value for the variable DC power supply target voltage in millivolts. </p>
+<p>Maximum value for the variable DC power current measurement in microamps. </p>
+
+</div>
+</div>
+<a id="gaeab2ed388fedf5ab4c239e63261a586d" name="gaeab2ed388fedf5ab4c239e63261a586d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaeab2ed388fedf5ab4c239e63261a586d">&#9670;&#160;</a></span>AIO_comboVariableDCMaximumMillivolts</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AIO_comboVariableDCMaximumMillivolts&#160;&#160;&#160;5000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maximum value for the variable DC power supply output voltage in millivolts. </p>
+
+</div>
+</div>
+<a id="ga9864d770176330e8188c0484df44fae8" name="ga9864d770176330e8188c0484df44fae8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9864d770176330e8188c0484df44fae8">&#9670;&#160;</a></span>AIO_comboVariableDCMinimumCurrentMicroamps</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AIO_comboVariableDCMinimumCurrentMicroamps&#160;&#160;&#160;250</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Minimum value for the variable DC power current measurement in microamps. </p>
 
 </div>
 </div>
@@ -92,12 +221,12 @@ Defines</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define AIO_comboVariableDCMinimumMillivolts&#160;&#160;&#160;= 600</td>
+          <td class="memname">#define AIO_comboVariableDCMinimumMillivolts&#160;&#160;&#160;600</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Minimum value for the variable DC power supply target voltage in millivolts. </p>
+<p>Minimum value for the variable DC power supply output voltage in millivolts. </p>
 
 </div>
 </div>
@@ -114,7 +243,7 @@ Defines</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>AIOComboModuleCurrentMeasurementRanges Enumeration of the current measurement ranges for the variable DC power supply. </p>
+<p>DC current measurement ranges for the AIO-C module battery simulator. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga601492d8e1c35fc7e18efe4b03380340a63544c88eac1b03f565aae1bdba369ca" name="gga601492d8e1c35fc7e18efe4b03380340a63544c88eac1b03f565aae1bdba369ca"></a>AIO_comboCurrentMeasurementRange_250uA&#160;</td><td class="fielddoc"><p >0 to 256 microamps </p>
 </td></tr>
@@ -128,43 +257,69 @@ Defines</h2></td></tr>
 
 </div>
 </div>
-<a id="gad371efbc3a8779385f900dd0258e6224" name="gad371efbc3a8779385f900dd0258e6224"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad371efbc3a8779385f900dd0258e6224">&#9670;&#160;</a></span>AIOComboModuleParameters</h2>
+<a id="ga194241fa7dcd73dd03bf5ef7b4840e45" name="ga194241fa7dcd73dd03bf5ef7b4840e45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga194241fa7dcd73dd03bf5ef7b4840e45">&#9670;&#160;</a></span>AIOComboModuleDoubleParameters</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="group___a_i_o-_c-module.html#gad371efbc3a8779385f900dd0258e6224">AIOComboModuleParameters</a></td>
+          <td class="memname">enum <a class="el" href="group___a_i_o-_c-module.html#ga194241fa7dcd73dd03bf5ef7b4840e45">AIOComboModuleDoubleParameters</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>AIOComboModuleParameters Enumeration of the AIO-C module parameters. </p>
+<p>Double-precision floating point parameters for the AIO-C module. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggad371efbc3a8779385f900dd0258e6224abcf1b4bbb1bc19622b7d8d818e012981" name="ggad371efbc3a8779385f900dd0258e6224abcf1b4bbb1bc19622b7d8d818e012981"></a>AIO_comboParameterFirmwareVersion&#160;</td><td class="fielddoc"><p >Read-only integer value of the firmware version, or -1 on error. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga194241fa7dcd73dd03bf5ef7b4840e45a2fd745901f6005c3ec8a113a77391437" name="gga194241fa7dcd73dd03bf5ef7b4840e45a2fd745901f6005c3ec8a113a77391437"></a>AIO_comboParameterVariableDCPowerMeasuredAmperes&#160;</td><td class="fielddoc"><p >Reads the measured output current in amperes for the battery simulator. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggad371efbc3a8779385f900dd0258e6224a7374851455e305a6ffb46bdc59522165" name="ggad371efbc3a8779385f900dd0258e6224a7374851455e305a6ffb46bdc59522165"></a>AIO_comboParameterSerialNumber&#160;</td><td class="fielddoc"><p >Read-only integer value of the serial number, or -1 on error. </p>
+<tr><td class="fieldname"><a id="gga194241fa7dcd73dd03bf5ef7b4840e45af82f55b8e7e521f4e18bfeb004f641ff" name="gga194241fa7dcd73dd03bf5ef7b4840e45af82f55b8e7e521f4e18bfeb004f641ff"></a>AIO_comboParameterOverCurrentThresholdAmperes&#160;</td><td class="fielddoc"><p >Set the overcurrent threshold in amperes; note that the allowable value range for this parameter is determined by the measured current range. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggad371efbc3a8779385f900dd0258e6224a4bcb75b47c3cc2a56d432593cca6286f" name="ggad371efbc3a8779385f900dd0258e6224a4bcb75b47c3cc2a56d432593cca6286f"></a>AIO_comboParameterAuxOut&#160;</td><td class="fielddoc"><p >Integer parameter for the AIO-C AUX OUT pins; bits 0-7 of the value are a bit mask corresponding to the state of the AUX OUT pins. </p>
+</table>
+
+</div>
+</div>
+<a id="ga1d0d667c9fe8ba0734beb5f4e4807ff2" name="ga1d0d667c9fe8ba0734beb5f4e4807ff2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1d0d667c9fe8ba0734beb5f4e4807ff2">&#9670;&#160;</a></span>AIOComboModuleIntParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___a_i_o-_c-module.html#ga1d0d667c9fe8ba0734beb5f4e4807ff2">AIOComboModuleIntParameters</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Integer parameters for the AIO-C module. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga1d0d667c9fe8ba0734beb5f4e4807ff2abcf1b4bbb1bc19622b7d8d818e012981" name="gga1d0d667c9fe8ba0734beb5f4e4807ff2abcf1b4bbb1bc19622b7d8d818e012981"></a>AIO_comboParameterFirmwareVersion&#160;</td><td class="fielddoc"><p >Module firmware version. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggad371efbc3a8779385f900dd0258e6224a23a344aefff0ade65077c47ca893db2b" name="ggad371efbc3a8779385f900dd0258e6224a23a344aefff0ade65077c47ca893db2b"></a>AIO_comboParameterAuxIn&#160;</td><td class="fielddoc"><p >Read-only integer parameter for the AIO-C AUX IN pins; bits 0-7 of the value are a bit mask corresponding to the state of the AUX IN pins. </p>
+<tr><td class="fieldname"><a id="gga1d0d667c9fe8ba0734beb5f4e4807ff2a7374851455e305a6ffb46bdc59522165" name="gga1d0d667c9fe8ba0734beb5f4e4807ff2a7374851455e305a6ffb46bdc59522165"></a>AIO_comboParameterSerialNumber&#160;</td><td class="fielddoc"><p >Module serial number. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggad371efbc3a8779385f900dd0258e6224a9fee8fce1cc6a77be646df3e1deee58f" name="ggad371efbc3a8779385f900dd0258e6224a9fee8fce1cc6a77be646df3e1deee58f"></a>AIO_comboParameter5VDCEnable&#160;</td><td class="fielddoc"><p >Integer parameter to enable or disable the 5 VDC power supply; 0 to disable, 1 to enable. </p>
+<tr><td class="fieldname"><a id="gga1d0d667c9fe8ba0734beb5f4e4807ff2a4bcb75b47c3cc2a56d432593cca6286f" name="gga1d0d667c9fe8ba0734beb5f4e4807ff2a4bcb75b47c3cc2a56d432593cca6286f"></a>AIO_comboParameterAuxOut&#160;</td><td class="fielddoc"><p >AUX OUT pin settings<br  />
+ <br  />
+ Bits 0-7 of the value are a bit mask corresponding to the state of the AUX OUT pins. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggad371efbc3a8779385f900dd0258e6224a92e8f4759b58430af8beda36b50c862f" name="ggad371efbc3a8779385f900dd0258e6224a92e8f4759b58430af8beda36b50c862f"></a>AIO_comboParameterVariableDCPowerEnable&#160;</td><td class="fielddoc"><p >Integer parameter to enable or disable the variable DC power supply; 0 to disable, 1 to enable. </p>
+<tr><td class="fieldname"><a id="gga1d0d667c9fe8ba0734beb5f4e4807ff2a23a344aefff0ade65077c47ca893db2b" name="gga1d0d667c9fe8ba0734beb5f4e4807ff2a23a344aefff0ade65077c47ca893db2b"></a>AIO_comboParameterAuxIn&#160;</td><td class="fielddoc"><p >Read-only value for AUX IN<br  />
+ <br  />
+ bits 0-7 of the value are a bit mask corresponding to the state of the AUX IN pins. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggad371efbc3a8779385f900dd0258e6224a3f11d6a18832c90446d4006999d74c62" name="ggad371efbc3a8779385f900dd0258e6224a3f11d6a18832c90446d4006999d74c62"></a>AIO_comboParameterVariableDCPowerOutputMillivolts&#160;</td><td class="fielddoc"><p >Integer parameter to set the output voltage in millivolts for the variable DC power supply, from 600 mV to 5000 mV. </p>
+<tr><td class="fieldname"><a id="gga1d0d667c9fe8ba0734beb5f4e4807ff2a9fee8fce1cc6a77be646df3e1deee58f" name="gga1d0d667c9fe8ba0734beb5f4e4807ff2a9fee8fce1cc6a77be646df3e1deee58f"></a>AIO_comboParameter5VDCEnable&#160;</td><td class="fielddoc"><p >Enable or disable the 5 VDC power supply<br  />
+ <br  />
+ 0 to disable, 1 to enable. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggad371efbc3a8779385f900dd0258e6224a98bc80f106963d5a2f6a286f7df5eff2" name="ggad371efbc3a8779385f900dd0258e6224a98bc80f106963d5a2f6a286f7df5eff2"></a>AIO_comboParameterVariableDCPowerMeasuredMillivolts&#160;</td><td class="fielddoc"><p >Read-only integer parameter for the actual measured voltage for the variable DC power supply. </p>
+<tr><td class="fieldname"><a id="gga1d0d667c9fe8ba0734beb5f4e4807ff2a92e8f4759b58430af8beda36b50c862f" name="gga1d0d667c9fe8ba0734beb5f4e4807ff2a92e8f4759b58430af8beda36b50c862f"></a>AIO_comboParameterVariableDCPowerEnable&#160;</td><td class="fielddoc"><p >Enable or disable the variable DC power supply<br  />
+ <br  />
+ 0 to disable, 1 to enable. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggad371efbc3a8779385f900dd0258e6224a2fd745901f6005c3ec8a113a77391437" name="ggad371efbc3a8779385f900dd0258e6224a2fd745901f6005c3ec8a113a77391437"></a>AIO_comboParameterVariableDCPowerMeasuredAmperes&#160;</td><td class="fielddoc"><p >Read-only double precision floating point parameter for the measured output current in amperes for the variable DC power supply. </p>
+<tr><td class="fieldname"><a id="gga1d0d667c9fe8ba0734beb5f4e4807ff2a3f11d6a18832c90446d4006999d74c62" name="gga1d0d667c9fe8ba0734beb5f4e4807ff2a3f11d6a18832c90446d4006999d74c62"></a>AIO_comboParameterVariableDCPowerOutputMillivolts&#160;</td><td class="fielddoc"><p >Sets the battery simulator output voltage in millivolts, from 600 mV to 5000 mV. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggad371efbc3a8779385f900dd0258e6224ab25a15b91935781b7a9652b65c7087ed" name="ggad371efbc3a8779385f900dd0258e6224ab25a15b91935781b7a9652b65c7087ed"></a>AIO_comboParameterMeasuredCurrentRange&#160;</td><td class="fielddoc"><p >Integer parameter to set the variable power supply current measurement range; must be one of the AIO_COMBO_MODULE_CURRENT_MEASUREMENT constants (see below) </p>
+<tr><td class="fieldname"><a id="gga1d0d667c9fe8ba0734beb5f4e4807ff2a98bc80f106963d5a2f6a286f7df5eff2" name="gga1d0d667c9fe8ba0734beb5f4e4807ff2a98bc80f106963d5a2f6a286f7df5eff2"></a>AIO_comboParameterVariableDCPowerMeasuredMillivolts&#160;</td><td class="fielddoc"><p >Reads the actual measured voltage in millivolts for the variable DC power supply. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggad371efbc3a8779385f900dd0258e6224af82f55b8e7e521f4e18bfeb004f641ff" name="ggad371efbc3a8779385f900dd0258e6224af82f55b8e7e521f4e18bfeb004f641ff"></a>AIO_comboParameterOverCurrentThresholdAmperes&#160;</td><td class="fielddoc"><p >Double precision floating point parameter for the over current threshold in amperes; note that the value range for this parameter is determined by the measured current range. </p>
+<tr><td class="fieldname"><a id="gga1d0d667c9fe8ba0734beb5f4e4807ff2ab25a15b91935781b7a9652b65c7087ed" name="gga1d0d667c9fe8ba0734beb5f4e4807ff2ab25a15b91935781b7a9652b65c7087ed"></a>AIO_comboParameterMeasuredCurrentRange&#160;</td><td class="fielddoc"><p >Set the battery simulator current measurement range; must be one of the AIO_comboCurrentMeasurementRange values. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggad371efbc3a8779385f900dd0258e6224a5295b16f458eaa603a35a24a6f51754b" name="ggad371efbc3a8779385f900dd0258e6224a5295b16f458eaa603a35a24a6f51754b"></a>AIO_comboParameterOverCurrentCondition&#160;</td><td class="fielddoc"><p >Integer parameter for over current condition; if this parameter value reads as true, then then AIO-C module has detected an over current condition. Set this parameter to zero to clear the over current condition. </p>
+<tr><td class="fieldname"><a id="gga1d0d667c9fe8ba0734beb5f4e4807ff2a5295b16f458eaa603a35a24a6f51754b" name="gga1d0d667c9fe8ba0734beb5f4e4807ff2a5295b16f458eaa603a35a24a6f51754b"></a>AIO_comboParameterOverCurrentCondition&#160;</td><td class="fielddoc"><p >If this parameter value reads as true, then then AIO-C module has detected an over current condition. Set this parameter to zero to clear the over current condition. </p>
 </td></tr>
 </table>
 

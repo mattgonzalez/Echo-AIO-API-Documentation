@@ -25,7 +25,7 @@
 var NAVTREE =
 [
   [ "Echo AIO API", "index.html", [
-    [ "Using the Echo AIO API", "index.html", null ],
+    [ "Getting Started", "index.html", null ],
     [ "Index", "modules.html", "modules" ]
   ] ]
 ];
