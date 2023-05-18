@@ -7,8 +7,8 @@ var modules =
     [ "Module parameter functions", "group___module-parameter-functions.html", "group___module-parameter-functions" ],
     [ "Device parameter functions", "group___device-parameter-functions.html", "group___device-parameter-functions" ],
     [ "Configure AIO-A, AIO-S, AIO-L, and AIO-H modules", "group___a_i_o-analog-module.html", "group___a_i_o-analog-module" ],
-    [ "Configure AIO-C module", "group___a_i_o-_c-module.html", "group___a_i_o-_c-module" ],
     [ "Configure AIO-H module", "group___a_i_o-headphone.html", "group___a_i_o-headphone" ],
     [ "Configure an AIO TDM module", "group___a_i_o-_t-module.html", "group___a_i_o-_t-module" ],
-    [ "Constants and return values", "group___a_i_o-zzz-interface-constants-and-return-values.html", "group___a_i_o-zzz-interface-constants-and-return-values" ]
+    [ "Constants and return values", "group___a_i_o-zzz-interface-constants-and-return-values.html", "group___a_i_o-zzz-interface-constants-and-return-values" ],
+    [ "Configure AIO Device", "group___a_i_o-device.html", "group___a_i_o-device" ]
 ];

@@ -5,6 +5,7 @@ var group___a_i_o_zzz_interface_return_values =
     [ "AIO_invalidModuleSlot", "group___a_i_o-zzz-interface-return-values.html#ga66c79fb5ce7686588d39c492260cac0a", null ],
     [ "AIO_invalidOutputChannel", "group___a_i_o-zzz-interface-return-values.html#gacf34a8d56d879cac969b96f048c0a30d", null ],
     [ "AIO_invalidParameter", "group___a_i_o-zzz-interface-return-values.html#ga9720f89a2a3017242d63a9d6e4ce519f", null ],
+    [ "AIO_invalidPointer", "group___a_i_o-zzz-interface-return-values.html#ga1fb0af585497e315903078dc5525a7d7", null ],
     [ "AIO_invalidValue", "group___a_i_o-zzz-interface-return-values.html#ga633433652f21c0f40b1539ce03016a2f", null ],
     [ "AIO_missingParameter", "group___a_i_o-zzz-interface-return-values.html#gad1e764d4eb7e1fcaffa55912083aae5e", null ],
     [ "AIO_notFound", "group___a_i_o-zzz-interface-return-values.html#ga793f29f893d7bd2cb70e9e9ec732d42a", null ],

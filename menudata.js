@@ -22,21 +22,6 @@
 
  @licend  The above is the entire license notice for the JavaScript code in this file
 */
-var NAVTREE =
-[
-  [ "Echo AIO API", "index.html", [
-    [ "Introduction", "index.html", [
-      [ "Python example", "index.html#autotoc_md1", null ],
-      [ "C++ example", "index.html#autotoc_md2", null ]
-    ] ],
-    [ "Categories", "modules.html", "modules" ]
-  ] ]
-];
-
-var NAVTREEINDEX =
-[
-"group___a_i_o-_t-module.html"
-];
-
-var SYNCONMSG = 'click to disable panel synchronisation';
-var SYNCOFFMSG = 'click to enable panel synchronisation';
+var menudata={children:[
+{text:"Main Page",url:"index.html"},
+{text:"Categories",url:"modules.html"}]}
